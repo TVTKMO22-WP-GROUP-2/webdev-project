@@ -1,10 +1,10 @@
-import "../index.css"
+import "../index.css";
 
-function Groups(){
-    return(
-        <>
-            <h1>GROUPS PAGE</h1>
-        </>
-    );
+function Groups() {
+  return (
+    <>
+      <h1>GROUPS PAGE</h1>
+    </>
+  );
 }
-export default Groups
+export default Groups;

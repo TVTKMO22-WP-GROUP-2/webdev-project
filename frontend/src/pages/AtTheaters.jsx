@@ -1,10 +1,10 @@
-import "../index.css"
+import "../index.css";
 
-function AtTheaters(){
-    return(
-        <>
-            <h1>AT THEATERS PAGE</h1>
-        </>
-    );
+function AtTheaters() {
+  return (
+    <>
+      <h1>AT THEATERS PAGE</h1>
+    </>
+  );
 }
-export default AtTheaters
+export default AtTheaters;

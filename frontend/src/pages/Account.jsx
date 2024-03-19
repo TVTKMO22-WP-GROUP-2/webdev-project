@@ -1,10 +1,10 @@
-import "../index.css"
+import "../index.css";
 
-function Account(){
-    return(
-        <>
-            <h1>ACCOUNT PAGE</h1>
-        </>
-    );
+function Account() {
+  return (
+    <>
+      <h1>ACCOUNT PAGE</h1>
+    </>
+  );
 }
-export default Account
+export default Account;

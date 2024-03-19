@@ -1,10 +1,10 @@
-import "../index.css"
+import "../index.css";
 
-function YourReviews(){
-    return(
-        <>
-            <h1>YOUR REVIEWS PAGE</h1>
-        </>
-    );
+function YourReviews() {
+  return (
+    <>
+      <h1>YOUR REVIEWS PAGE</h1>
+    </>
+  );
 }
-export default YourReviews
+export default YourReviews;
