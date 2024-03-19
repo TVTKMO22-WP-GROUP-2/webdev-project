@@ -3,6 +3,7 @@ import mongoose from "mongoose";
 import { validationResult, checkSchema, matchedData } from "express-validator";
 import { User } from "./database/schemas/user.mjs";
 import { createUserValidation } from "./utils/validationSchemas.mjs";
+import cors from "cors";
 
 const app = express();
 
@@ -12,6 +13,7 @@ mongoose
   .catch((err) => console.log("Error " + err));
 
 app.use(express.json());
+app.use(cors());
 
 app.listen(3000, () => {
   console.log("Backend server listening on port 3000");
