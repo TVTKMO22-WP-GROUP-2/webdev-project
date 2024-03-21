@@ -39,6 +39,7 @@ header {
 /* HOME PAGE */
 .homePageContainer {
   width: 100%;
+  background-image: url("/gradient-bg6.png");
 }
 
 /* LOGIN PAGE */
@@ -231,4 +232,8 @@ header {
 }
 .signUpToggleButton:hover {
   background-color: hsl(0, 0%, 10%);
+}
+.featuredMovieItem img {
+  max-width: 200px;
+  height: auto;
 }
