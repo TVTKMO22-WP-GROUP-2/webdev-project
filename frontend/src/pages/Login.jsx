@@ -8,22 +8,19 @@ function Login() {
   const [isSignUp, setIsSignUp] = useState(false);
   const [isError, setIsError] = useState(false);
 
-  // * Generate JSON form to send to backend for sign up
-  const generateForm = (username, password) => {
-    return {
-      username: username,
-      password: password,
-    };
-  };
-
-  // * Main sign up function which sends a post request to the backend
-  const signUp = async () => {
+  // * Sign up and login HTTP requests in the same function
+  const signUpOrLogIn = async () => {
     try {
-      const formData = generateForm(username, password);
       const response = await axios.post(
-        "http://localhost:3000/users",
-        formData
+        isSignUp
+          ? "http://localhost:3000/users/signup"
+          : "http://localhost:3000/users/login",
+        {
+          username,
+          password,
+        }
       );
+      console.log(response);
       setIsError(false);
     } catch (err) {
       console.error("Error " + err);
@@ -39,10 +36,13 @@ function Login() {
 
   // * This function renders top error messages to the user received as a response from the post request
   const renderErrorMessages = (errorMessages) => {
-    const errorMessageContainerElement = document.getElementById("loginErrorMessages");
+    const errorMessageContainerElement =
+      document.getElementById("loginErrorMessages");
     if (errorMessageContainerElement) {
       while (errorMessageContainerElement.firstChild) {
-        errorMessageContainerElement.removeChild(errorMessageContainerElement.firstChild);
+        errorMessageContainerElement.removeChild(
+          errorMessageContainerElement.firstChild
+        );
       }
       for (let i = 0; i < errorMessages.length && i < 3; i++) {
         const errorMessageElement = document.createElement("p");
@@ -54,9 +54,7 @@ function Login() {
 
   // * Function which handles the clicking of the (Log in)/(Sign up) button
   const handleSubmit = () => {
-    if (isSignUp) {
-      signUp();
-    }
+    signUpOrLogIn();
   };
 
   // * This function keeps track of whether the user is on the sign up screen or the log in screen

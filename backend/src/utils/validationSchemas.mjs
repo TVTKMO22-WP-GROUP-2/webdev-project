@@ -1,44 +1,36 @@
-import { User } from "../database/schemas/user.mjs";
-
-export const createUserValidation = {
+export const userValidation = {
   username: {
     exists: {
       errorMessage: "Request has to include username"
     },
     isString: {
-      errorMessage: "Username must be a string",
+      errorMessage: "Username must be a string"
     },
+    trim: true,
     isLength: {
       options: {
         min: 1,
-        max: 32,
+        max: 32
       },
       errorMessage:
-        "Username cannot empty or more than 32 characters long",
-    },
-    custom: {
-      options: async (value) => {
-        const existingUser = await User.findOne({ username: value });
-        if (existingUser) {
-          return Promise.reject("Username already taken");
-        } else return true;
-      },
-    },
+        "Username cannot be empty or more than 32 characters long"
+    }
   },
   password: {
     exists: {
       errorMessage: "Request has to include password"
     },
     isString: {
-      errorMessage: "Password must be a string",
+      errorMessage: "Password must be a string"
     },
+    trim: true,
     isLength: {
       options: {
         min: 1,
-        max: 32,
+        max: 32
       },
       errorMessage:
-        "Password cannot empty or more than 32 characters long",
-    },
-  },
-};
+        "Password cannot be empty or more than 32 characters long"
+    }
+  }
+}
