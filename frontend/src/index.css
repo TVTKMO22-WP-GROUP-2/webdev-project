@@ -41,6 +41,19 @@ header {
   width: 100%;
   background-image: url("/gradient-bg6.png");
 }
+.featuredMovieItem {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.movieDescription {
+  text-align: center;
+}
+.movieImage {
+  max-width: 400px;
+  height: auto;
+  margin: 0 auto;
+}
 
 /* LOGIN PAGE */
 
@@ -232,8 +245,4 @@ header {
 }
 .signUpToggleButton:hover {
   background-color: hsl(0, 0%, 10%);
-}
-.featuredMovieItem img {
-  max-width: 200px;
-  height: auto;
 }

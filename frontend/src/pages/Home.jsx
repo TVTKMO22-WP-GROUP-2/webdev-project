@@ -52,10 +52,13 @@ function Home() {
         <Slider {...settings}>
           {featuredMovies.map(movie => (
             <div key={movie.id} className="featuredMovieItem">
-              <img src={movie.image} alt={movie.title} style={{ maxWidth: '600px', height: 'auto' }}/>
+              <div className="movieContainer"></div>
+              <img src={movie.image} alt={movie.title} className="movieImage"/>
+              <div className="movieDescription">
               <h3>{movie.title}</h3>
               <p>{movie.description}</p>
             </div>
+          </div>
           ))}
         </Slider>
       </div>
