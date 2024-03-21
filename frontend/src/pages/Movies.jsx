@@ -1,10 +1,15 @@
 import "../index.css";
+import Card from "../components/Card";
 
 function Movies() {
   return (
-    <>
-      <h1>MOVIES PAGE</h1>
-    </>
+    <div className="moviesPageContainer">
+      <div className="searchBar">
+        <input type="text" />
+        <button>Search</button>
+      </div>
+      <Card></Card>
+    </div>
   );
 }
 export default Movies;
