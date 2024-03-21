@@ -33,6 +33,23 @@ header {
   align-items: center;
   list-style: none;
 }
+/* Card */
+.card {
+  background-color: black;
+  height: 36.5vh;
+  width: 10em;
+  display: flex;
+  flex-direction: column;
+  padding: 1em;
+
+  background-color: hsla(0, 0%, 100%, 0.089);
+  border: none;
+  border-radius: 30px;
+  box-shadow: 10px 10px 20px hsl(0, 0%, 0%);
+}
+.card img {
+  height: 300px;
+}
 
 /*               -----PAGES-----               */
 
@@ -236,4 +253,65 @@ header {
 .featuredMovieItem img {
   max-width: 200px;
   height: auto;
+}
+
+/* MOVIES PAGE */
+
+.moviesPageContainer {
+  display: flex;
+  height: 93vh;
+  padding-top: 4em;
+  padding-left: 4em;
+  
+  background-image: url("/gradient-bg6.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+.searchBar {
+  position: fixed;
+  right: 3em;
+  display: flex;
+  align-items: center;
+}
+.searchBar input {
+  width: 60%;
+  height: 0.5em;
+
+  padding: 1em;
+
+  background-color: hsl(0, 0%, 5%);
+  border: 2px solid hsl(0, 0%, 35%);
+  color: white;
+  border-radius: 20px;
+  margin: 5px;
+}
+.searchBar button {
+  width: 30%;
+  height: 38px;
+  
+  transition: 0.5s;
+  background-size: 200% auto;
+  color: white;
+
+  border: 2px solid hsl(0, 0%, 35%);
+  border-radius: 1em;
+
+  background-image: linear-gradient(
+    to right,
+    hsl(323, 100%, 50%) 0%,
+    hsl(301, 92%, 20%) 51%,
+    hsl(323, 100%, 50%) 100%
+  );
+}
+.searchBar button:active {
+  background-image: linear-gradient(
+    to right,
+    hsl(323, 100%, 40%) 0%,
+    hsl(301, 92%, 10%) 51%,
+    hsl(323, 100%, 40%) 100%
+  );
+}
+.searchBar button:hover {
+  background-position: right center;
+  text-decoration: none;
 }
