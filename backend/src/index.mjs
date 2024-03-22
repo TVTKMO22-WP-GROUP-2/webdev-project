@@ -36,17 +36,6 @@ app.use(passport.initialize());
 app.use(passport.session());
 app.use(routes);
 
-app.post("/logintest", passport.authenticate("local"), (req, res) => {
-  res.sendStatus(200);
-});
-
-app.get("/login-status-test", (req, res) => {
-  if (req.user) {
-    return res.send(req.user);
-  }
-  return res.sendStatus(401);
-});
-
 app.listen(3000, () => {
   console.log("Backend server listening on port 3000");
 });

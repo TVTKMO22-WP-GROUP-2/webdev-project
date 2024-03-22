@@ -8,8 +8,8 @@ function Login() {
   const [isSignUp, setIsSignUp] = useState(false);
   const [isError, setIsError] = useState(false);
 
-  // * Sign up and login HTTP requests in the same function
-  const signUpOrLogIn = async () => {
+  // > Sign up and login HTTP requests in the same function
+  const Submit = async () => {
     try {
       const response = await axios.post(
         isSignUp
@@ -20,49 +20,82 @@ function Login() {
           password,
         }
       );
-      console.log(response);
+      // > Remove error messages if submit is successful.
+      const errorMessageContainerElement = document.getElementById(
+        "submitErrorMessages"
+      );
+      if (errorMessageContainerElement) {
+        removePreviousMessages(errorMessageContainerElement);
+      }
+      // > Switch to login if the user just created an account successfully.
+      // > Display login success message if user logged in successfully.
+      if (isSignUp) {
+        toggleSignUp();
+        const successH3 = document.getElementById("submitSuccessMessage");
+        successH3.textContent = "User created! You can now log in.";
+      } else {
+        const successH3 = document.getElementById("submitSuccessMessage");
+        successH3.textContent = "Login was successful!";
+      }
       setIsError(false);
     } catch (err) {
-      console.error("Error " + err);
-      if (err.response) {
+      // > Render error response messages if they are present.
+      if (err.response && Array.isArray(err.response.data)) {
         const errorMessages = err.response.data.map((error) => error.msg);
         renderErrorMessages(errorMessages);
         setIsError(true);
       } else {
-        setIsError(false);
+        console.log("Something went wrong");
+        setIsError(true);
       }
     }
   };
 
-  // * This function renders top error messages to the user received as a response from the post request
+  // > Remove previous error messages and render new ones if they are present.
   const renderErrorMessages = (errorMessages) => {
-    const errorMessageContainerElement =
-      document.getElementById("loginErrorMessages");
+    const errorMessageContainerElement = document.getElementById(
+      "submitErrorMessages"
+    );
     if (errorMessageContainerElement) {
-      while (errorMessageContainerElement.firstChild) {
-        errorMessageContainerElement.removeChild(
-          errorMessageContainerElement.firstChild
-        );
-      }
-      for (let i = 0; i < errorMessages.length && i < 3; i++) {
-        const errorMessageElement = document.createElement("p");
-        errorMessageElement.textContent = "\u{1F6C8} " + errorMessages[i];
-        errorMessageContainerElement.appendChild(errorMessageElement);
-      }
+      removePreviousMessages(errorMessageContainerElement);
+      renderNewErrorMessages(errorMessageContainerElement, errorMessages);
     }
   };
 
-  // * Function which handles the clicking of the (Log in)/(Sign up) button
-  const handleSubmit = () => {
-    signUpOrLogIn();
+  // > Removes any previous error or success messages.
+  const removePreviousMessages = (errorMessageContainerElement) => {
+    const successH3 = document.getElementById("submitSuccessMessage");
+    successH3.textContent = "";
+    while (errorMessageContainerElement.firstChild) {
+      errorMessageContainerElement.removeChild(
+        errorMessageContainerElement.firstChild
+      );
+    }
   };
 
-  // * This function keeps track of whether the user is on the sign up screen or the log in screen
+  // > Renders new error messages.
+  const renderNewErrorMessages = (
+    errorMessageContainerElement,
+    errorMessages
+  ) => {
+    for (let i = 0; i < errorMessages.length && i < 3; i++) {
+      const errorMessageElement = document.createElement("p");
+      errorMessageElement.textContent = "\u{1F6C8} " + errorMessages[i];
+      errorMessageContainerElement.appendChild(errorMessageElement);
+    }
+  };
+
+  // > Handles the clicking of the submit button.
+  const handleSubmit = () => {
+    Submit();
+  };
+
+  // > Keeps track of whether the user is on the sign up screen or the log in screen.
   const toggleSignUp = () => {
     setIsSignUp(!isSignUp);
   };
 
-  // * These two functions set the username and password variables when input is changed by user
+  // > These two functions set the username and password variables when input is changed by user.
   const handleUsernameChange = (e) => {
     setUsername(e.target.value);
     setIsError(false);
@@ -108,16 +141,19 @@ function Login() {
             </div>
           </div>
           <div
-            id="loginErrorMessages"
-            className="loginErrorMessagesContainer"
+            id="submitErrorMessages"
+            className="submitMsgs submitErrorMessagesContainer"
           ></div>
-          <div className="loginButtonContainer">
+          <div className="submitMsgs submitSuccessMessagesContainer">
+            <h3 id="submitSuccessMessage"></h3>
+          </div>
+          <div className="submitButtonContainer">
             <button
               type="button"
               className={
                 isSignUp
-                  ? "loginAndSignupButtons signupButton"
-                  : "loginAndSignupButtons loginButton"
+                  ? "submitButton signupButton"
+                  : "submitButton loginButton"
               }
               onClick={handleSubmit}
             >

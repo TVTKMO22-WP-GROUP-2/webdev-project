@@ -13,7 +13,7 @@ export const userValidation = {
         max: 32
       },
       errorMessage:
-        "Username cannot be empty or more than 32 characters long"
+        "Username cannot be empty, more than 32 characters or only whitespaces"
     }
   },
   password: {
@@ -30,7 +30,7 @@ export const userValidation = {
         max: 32
       },
       errorMessage:
-        "Password cannot be empty or more than 32 characters long"
+        "Password cannot be empty, more than 32 characters or only whitespaces"
     }
   }
 }
