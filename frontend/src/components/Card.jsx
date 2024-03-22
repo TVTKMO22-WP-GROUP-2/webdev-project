@@ -1,8 +1,8 @@
-function Card(){
+function Card({title, imgSRC}){
     return(
         <div className="card">
-            <img src="https://via.placeholder.com/150"/>
-            <h2>TESTING</h2>
+            <img src={imgSRC}/>
+            <h2>{title}</h2>
         </div>
     );
 }
