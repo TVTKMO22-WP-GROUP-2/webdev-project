@@ -2,9 +2,11 @@ import "../index.css";
 
 function NoPage() {
   return (
-    <>
-      <h1>NO PAGE NO PAGE NO PAGE NO PAGE NO PAGE NO PAGE NO PAGE</h1>
-    </>
+    <div className="noPageContainer">
+      <div className="noPageBox">
+        <h1>404 PAGE NOT FOUND</h1>
+      </div>
+    </div>
   );
 }
 export default NoPage;
