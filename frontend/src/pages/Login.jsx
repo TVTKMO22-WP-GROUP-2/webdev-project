@@ -1,153 +1,45 @@
 import axios from "axios";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import AlreadyLoggedIn from "../components/loginPage/AlreadyLoggedIn";
+import SignUpOrLogIn from "../components/loginPage/SignUpOrLogIn";
 import "../index.css";
 
 function Login() {
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
-  const [isSignUp, setIsSignUp] = useState(false);
-  const [isError, setIsError] = useState(false);
+  const [effectOnLogin, setEffectOnLogin] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
-  // * Generate JSON form to send to backend for sign up
-  const generateForm = (username, password) => {
-    return {
-      username: username,
-      password: password,
-    };
-  };
+  // > Runs every time the page mounts or the status of effectOnLogin changes.
+  useEffect(() => {
+    getLoginStatus();
+  }, [effectOnLogin]);
 
-  // * Main sign up function which sends a post request to the backend
-  const signUp = async () => {
+  // > Gets login status of current client and sets isLoggedIn accordingly.
+  const getLoginStatus = async () => {
     try {
-      const formData = generateForm(username, password);
-      const response = await axios.post(
-        "http://localhost:3000/users",
-        formData
-      );
-      setIsError(false);
-    } catch (err) {
-      console.error("Error " + err);
-      if (err.response) {
-        const errorMessages = err.response.data.map((error) => error.msg);
-        renderErrorMessages(errorMessages);
-        setIsError(true);
+      const response = await axios.get("http://localhost:3000/users/status", {
+        withCredentials: true
+      });
+      if (response.data === true) {
+        setIsLoggedIn(true);
       } else {
-        setIsError(false);
+        setIsLoggedIn(false);
       }
+    } catch (err) {
+      console.log(err);
     }
   };
 
-  // * This function renders top error messages to the user received as a response from the post request
-  const renderErrorMessages = (errorMessages) => {
-    const errorMessageContainerElement = document.getElementById("loginErrorMessages");
-    if (errorMessageContainerElement) {
-      while (errorMessageContainerElement.firstChild) {
-        errorMessageContainerElement.removeChild(errorMessageContainerElement.firstChild);
-      }
-      for (let i = 0; i < errorMessages.length && i < 3; i++) {
-        const errorMessageElement = document.createElement("p");
-        errorMessageElement.textContent = "\u{1F6C8} " + errorMessages[i];
-        errorMessageContainerElement.appendChild(errorMessageElement);
-      }
-    }
+  // > Changes the status of effectOnLogin when called from child component.
+  // > Passed in as a prop to the child and called on successful login.
+  const reloadParent = () => {
+    setEffectOnLogin((a) => !a);
   };
 
-  // * Function which handles the clicking of the (Log in)/(Sign up) button
-  const handleSubmit = () => {
-    if (isSignUp) {
-      signUp();
-    }
-  };
-
-  // * This function keeps track of whether the user is on the sign up screen or the log in screen
-  const toggleSignUp = () => {
-    setIsSignUp(!isSignUp);
-  };
-
-  // * These two functions set the username and password variables when input is changed by user
-  const handleUsernameChange = (e) => {
-    setUsername(e.target.value);
-    setIsError(false);
-  };
-  const handlePasswordChange = (e) => {
-    setPassword(e.target.value);
-    setIsError(false);
-  };
-
-  return (
-    <>
-      <div className="loginPageContainer">
-        <div className="loginBox">
-          <div className="loginHeaderTextContainer">
-            <h1 className="loginHeaderText">
-              {isSignUp ? "Create account" : "Log in to your account"}
-            </h1>
-          </div>
-          <div className="loginPageUserNameAndPassContainer">
-            <div className="loginPageUserNameContainer">
-              <input
-                type="text"
-                placeholder="Username"
-                onChange={handleUsernameChange}
-                className={
-                  isError
-                    ? "errorInputFields usernameInputField"
-                    : "inputFields usernameInputField"
-                }
-              />
-            </div>
-            <div className="loginPageUserPassContainer">
-              <input
-                type="text"
-                placeholder="Password"
-                onChange={handlePasswordChange}
-                className={
-                  isError
-                    ? "errorInputFields passwordInputField"
-                    : "inputFields passwordInputField"
-                }
-              />
-            </div>
-          </div>
-          <div
-            id="loginErrorMessages"
-            className="loginErrorMessagesContainer"
-          ></div>
-          <div className="loginButtonContainer">
-            <button
-              type="button"
-              className={
-                isSignUp
-                  ? "loginAndSignupButtons signupButton"
-                  : "loginAndSignupButtons loginButton"
-              }
-              onClick={handleSubmit}
-            >
-              {isSignUp ? "Create account" : "Log in"}
-            </button>
-          </div>
-          <div className="loginSeparatorContainer">
-            <hr className="loginSeparator" />
-          </div>
-          <div className="loginNoAccountTextContainer">
-            <h2 className="loginNoAccountText">
-              {isSignUp
-                ? "Already have an account?"
-                : "Don't have an account yet?"}
-            </h2>
-          </div>
-          <div className="signUpToggleButtonContainer">
-            <button
-              className="signUpToggleButton"
-              type="button"
-              onClick={toggleSignUp}
-            >
-              {isSignUp ? "Log in" : "Sign up!"}
-            </button>
-          </div>
-        </div>
-      </div>
-    </>
-  );
+  // > Either renders SignUpOrLogIn or AlreadyLoggedIn if user is logged in.
+  if (isLoggedIn === true) {
+    return <AlreadyLoggedIn />;
+  } else {
+    return <SignUpOrLogIn reloadParent={reloadParent} />;
+  }
 }
 export default Login;
