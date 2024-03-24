@@ -57,7 +57,7 @@ header {
 }
 .loginBox {
   height: 500px;
-  width: 1200px;
+  width: 1000px;
   background-color: hsla(0, 0%, 50%, 0.089);
   border: none;
   border-radius: 30px;
@@ -65,7 +65,7 @@ header {
 
   display: grid;
   grid-template-rows: repeat(10, 50px);
-  grid-template-columns: repeat(12, 100px);
+  grid-template-columns: repeat(10, 100px);
 }
 .loginHeaderTextContainer {
   grid-area: 1 / 2 / 3 / 9;
@@ -79,7 +79,7 @@ header {
   margin: 5px;
 }
 .loginPageUserNameAndPassContainer {
-  grid-area: 3 / 2 / 6 / 9;
+  grid-area: 3 / 2 / 6 / 8;
 }
 .loginPageUserNameContainer {
   display: flex;
@@ -144,10 +144,10 @@ header {
   color: hsl(120, 100%, 50%);
 }
 .submitButtonContainer {
-  grid-area: 3 / 9 / 5 / 12;
+  grid-area: 3 / 8 / 5 / 10;
 }
 .submitButton {
-  width: 100%;
+  width: 90%;
   height: 64px;
   margin: 5px;
   text-align: center;
@@ -191,12 +191,12 @@ header {
     hsl(182, 100%, 40%) 100%
   );
 }
-.loginAndSignupButtons:hover {
+.submitButton:hover {
   background-position: right center;
   text-decoration: none;
 }
 .loginSeparatorContainer {
-  grid-area: 8 / 1 / 9 / 13;
+  grid-area: 8 / 1 / 9 / 11;
   display: flex;
   justify-content: center;
 }
@@ -235,4 +235,87 @@ header {
 }
 .signUpToggleButton:hover {
   background-color: hsl(0, 0%, 10%);
+}
+@media only screen and (min-width: 601px) and (max-width: 1024px) {
+  .loginBox {
+    width: 600px;
+    display: grid;
+    grid-template-rows: repeat(10, 50px);
+    grid-template-columns: repeat(12, 50px);
+  }
+  .loginPageUserNameAndPassContainer {
+    grid-area: 3 / 2 / 6 / 10;
+  }
+  .submitButtonContainer {
+    grid-area: 3 / 10 / 5 / 12;
+  }
+  .loginSeparatorContainer {
+    grid-area: 8 / 1 / 9 / 13;
+  }
+  .signUpToggleButtonContainer {
+    grid-area: 8 / 9 / 10 / 12;
+  }
+  .submitButton {
+    font-size: 1.2rem;
+  }
+}
+@media only screen and (max-width: 600px) {
+  .loginBox {
+    width: 400px;
+    height: 600px;
+    display: grid;
+    grid-template-rows: repeat(12, 50px);
+    grid-template-columns: repeat(8, 50px);
+  }
+  .loginHeaderText {
+    font-size: 1.7em;
+  }
+  .loginPageUserNameAndPassContainer {
+    grid-area: 3 / 2 / 6 / 8;
+  }
+  .submitButtonContainer {
+    grid-area: 3 / 6 / 5 / 8;
+  }
+  .submitErrorMessagesContainer {
+    grid-area: 6 / 2 / 10 / 6;
+  }
+  .loginSeparatorContainer {
+    grid-area: 10 / 1 / 11 / 13;
+  }
+  .loginNoAccountTextContainer {
+    grid-area: 10 / 2 / 12 / 8;
+  }
+  .signUpToggleButtonContainer {
+    grid-area: 11 / 2 / 13 / 5;
+    justify-content: start;
+  }
+  .submitButtonContainer {
+    grid-area: 6 / 6 / 8 / 8;
+  }
+  .submitButton {
+    font-size: 1.2rem;
+  }
+  .loginNoAccountText {
+    font-size: 1.3rem;
+  }
+}
+/* ALREADY LOGGED IN */
+.loggedInPageContainer {
+  height: 100vh;
+  background-image: url("/gradient-bg9.png");
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.logoutButtonContainer {
+  grid-area: 1 / 11 / 3 / 13;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.logoutButton {
+  width: 25%;
+  height: 50%;
+  border: none;
+  background: url("/logout_icon_red.svg");
 }
