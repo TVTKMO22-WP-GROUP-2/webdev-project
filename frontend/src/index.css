@@ -386,6 +386,7 @@ header {
 .noPageBox h1 {
   text-align: center;
   width: 100%;
+}
 @media only screen and (min-width: 601px) and (max-width: 1024px) {
   .loginBox {
     width: 600px;
