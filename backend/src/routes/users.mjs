@@ -45,15 +45,16 @@ router.post(
   returnValidationErrors,
   passport.authenticate("local"),
   (req, res) => {
-    return res.sendStatus(200);
+    return res.status(200).send({ msg: "Login success!" });
   }
 );
 
 router.get("/users/status", (req, res) => {
-  if (!req.isAuthenticated()) return res.sendStatus(401);
   if (req.user) {
-    return res.status(200).send({ msg: "yay! you are logged in!" })
+    return res.status(200).send(true);
+  } else {
+    return res.status(200).send(false);
   }
-})
+});
 
 export default router;

@@ -17,7 +17,7 @@ mongoose
   .catch((err) => console.log("Error " + err));
 
 app.use(express.json());
-app.use(cors());
+app.use(cors({ credentials: true, origin: "http://localhost:5173" }));
 app.use(cookieParser());
 app.use(
   session({
@@ -25,11 +25,13 @@ app.use(
     saveUninitialized: false,
     resave: false,
     cookie: {
+      httpOnly: true,
+      secure: false,
       maxAge: 60000 * 60,
     },
     store: MongoStore.create({
       client: mongoose.connection.getClient(),
-    })
+    }),
   })
 );
 app.use(passport.initialize());
