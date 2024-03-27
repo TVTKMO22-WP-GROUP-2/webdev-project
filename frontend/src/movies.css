@@ -8,7 +8,6 @@
     font-weight: 400;
     color: white;
   }
-  
   /* COMPONENT STYLES */
   /* HEADER */
   /* No styles added for header as it's not present in Movies component */
@@ -32,7 +31,6 @@
   .card img {
     height: 300px;
   }
-  
   /* PAGES STYLES */
   /* MOVIES PAGE */
   .moviesPageContainer {
@@ -108,8 +106,6 @@
     width: 100%;
     height: 90%;
   }
-
-
   .searchResults .card h2 {
     width: 100%;
     overflow: hidden;
@@ -118,29 +114,42 @@
     height: 50px;
     font-size: 1.5rem;
   }
-
+  /* MOVIE DETAILS PAGE */
   .detailPageContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-image: url("/gradient-bg6.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+  }
+  .detailBox {
+    margin: 3em;
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 20px;
+    justify-content: center;
+    background-color: hsla(0, 0%, 7%, 0.678);
+    border: none;
+    border-radius: 2em;
+    box-shadow: 10px 10px 20px hsl(0, 0%, 0%);
   }
-  
   .title {
     font-size: 24px;
-    margin-bottom: 20px;
+    margin-bottom: 2em;
   }
-  
   .movieDetails {
     display: flex;
   }
-  
   .movieDetails img {
-    max-width: 300px;
-    margin-right: 20px;
+    margin-left: 2em;
+    margin-right: 2em;
+    margin-bottom: 2em;
+    height: 500px;
   }
-  
   .details {
+    margin-right: 2em;
     flex: 1;
   }
   
