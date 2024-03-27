@@ -471,3 +471,123 @@ header {
   border: none;
   background: url("/logout_icon_red.svg");
 }
+.featuredMovieItem img {
+  max-width: 200px;
+  height: auto;
+}
+
+/* MOVIES PAGE */
+
+.moviesPageContainer {
+  display: flex;
+  height: 93vh;
+  padding-top: 4em;
+  padding-left: 4em;
+  
+  background-image: url("/gradient-bg6.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+.searchBar {
+  position: fixed;
+  right: 3em;
+  display: flex;
+  align-items: center;
+  width: 13%;
+}
+.searchBar input {
+  width: 70%;
+  height: 0.5em;
+
+  padding: 1em;
+
+  background-color: hsl(0, 0%, 5%);
+  border: 2px solid hsl(0, 0%, 35%);
+  color: white;
+  border-radius: 20px;
+  margin: 5px;
+}
+.searchBar button {
+  width: 20%;
+  height: 38px;
+  
+  transition: 0.5s;
+  background-size: 200% auto;
+  color: white;
+
+  border: 2px solid hsl(0, 0%, 35%);
+  border-radius: 1em;
+
+  background-image: linear-gradient(
+    to right,
+    hsl(323, 100%, 50%) 0%,
+    hsl(301, 92%, 20%) 51%,
+    hsl(323, 100%, 50%) 100%
+  );
+}
+.searchBar button:active {
+  background-image: linear-gradient(
+    to right,
+    hsl(323, 100%, 40%) 0%,
+    hsl(301, 92%, 10%) 51%,
+    hsl(323, 100%, 40%) 100%
+  );
+}
+.searchBar button:hover {
+  background-position: right center;
+  text-decoration: none;
+}
+.searchResults {
+  width: 84%;
+  overflow: auto;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.searchResults::-webkit-scrollbar {
+  display: none;
+}
+.searchResults .card {
+  margin: 0.5em;
+  display: inline-block;
+  width: 10em;
+  text-align: center;
+}
+.searchResults .card img {
+  display: flex;
+  width: 100%;
+  height: 90%;
+}
+.searchResults .card h2 {
+  width: 100%;
+  overflow: hidden;
+  height: 50px;
+}
+/* NO PAGE */
+.noPageContainer {
+  width: 100%;
+  height: 100vh;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  background-image: url("/gradient-bg6.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+.noPageBox {
+  height: 40%;
+  width: 50%;
+  background-color: hsla(0, 0%, 50%, 0.089);
+  border: none;
+  border-radius: 30px;
+  box-shadow: 10px 10px 20px hsl(0, 0%, 0%);
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.noPageBox h1 {
+  text-align: center;
+  width: 100%;
+}

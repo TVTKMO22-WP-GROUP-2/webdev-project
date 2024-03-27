@@ -1,10 +1,12 @@
-function Card({title, imgSRC}){
-    return(
-        <div className="card">
-            <img src={imgSRC}/>
-            <h2>{title}</h2>
-        </div>
-    );
+import React from 'react';
+
+function Card({ title, imgSRC, onClick }) {
+  return (
+    <div className="card" onClick={onClick}>
+      <img src={imgSRC} alt={title} />
+      <h2>{title}</h2>
+    </div>
+  );
 }
 
-export default Card
+export default Card;
