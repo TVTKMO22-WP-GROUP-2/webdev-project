@@ -32,8 +32,8 @@ function Navigation() {
             </Link>
           </li>
           <li>
-            <Link className="navigationLink" to="/account">
-              Account
+            <Link className="navigationLink" to="/profile">
+              Profile
             </Link>
           </li>
           <li>

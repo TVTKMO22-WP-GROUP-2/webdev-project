@@ -4,7 +4,7 @@ import "./index.css";
 import Header from "./components/Header";
 import Movies from "./pages/Movies";
 import Groups from "./pages/Groups";
-import Account from "./pages/Account";
+import Profile from "./pages/Profile";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
 import YourReviews from "./pages/YourReviews";
@@ -21,7 +21,7 @@ export default function App() {
         <Route path="at-theaters" element={<AtTheaters />} />
         <Route path="your-reviews" element={<YourReviews />} />
         <Route path="groups" element={<Groups />} />
-        <Route path="account" element={<Account />} />
+        <Route path="profile" element={<Profile />} />
         <Route path="login" element={<Login />} />
         <Route path="*" element={<NoPage />} />
       </Routes>

@@ -2,14 +2,14 @@ import axios from "axios";
 import { useState } from "react";
 import "../../index.css";
 
-function SignUpOrLogIn({reloadParent}) {
+function SignUpOrLogIn({ reloadParent }) {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [isSignUp, setIsSignUp] = useState(false);
   const [isError, setIsError] = useState(false);
 
   const instance = axios.create({
-    withCredentials: true
+    withCredentials: true,
   });
 
   // > Sign up and login HTTP requests in the same function.
@@ -111,82 +111,60 @@ function SignUpOrLogIn({reloadParent}) {
   };
 
   return (
-    <>
-      <div className="loginPageContainer">
-        <div className="loginBox">
-          <div className="loginHeaderTextContainer">
-            <h1 className="loginHeaderText">
-              {isSignUp ? "Create account" : "Log in to your account"}
-            </h1>
-          </div>
-          <div className="loginPageUserNameAndPassContainer">
-            <div className="loginPageUserNameContainer">
-              <input
-                type="text"
-                placeholder="Username"
-                onChange={handleUsernameChange}
-                className={
-                  isError
-                    ? "errorInputFields usernameInputField"
-                    : "inputFields usernameInputField"
-                }
-              />
-            </div>
-            <div className="loginPageUserPassContainer">
-              <input
-                type="text"
-                placeholder="Password"
-                onChange={handlePasswordChange}
-                className={
-                  isError
-                    ? "errorInputFields passwordInputField"
-                    : "inputFields passwordInputField"
-                }
-              />
-            </div>
-          </div>
-          <div
-            id="submitErrorMessages"
-            className="submitMsgs submitErrorMessagesContainer"
-          ></div>
-          <div className="submitMsgs submitSuccessMessagesContainer">
-            <h3 id="submitSuccessMessage"></h3>
-          </div>
-          <div className="submitButtonContainer">
-            <button
-              type="button"
-              className={
-                isSignUp
-                  ? "submitButton signupButton"
-                  : "submitButton loginButton"
-              }
-              onClick={handleSubmit}
-            >
-              {isSignUp ? "Create account" : "Log in"}
-            </button>
-          </div>
-          <div className="loginSeparatorContainer">
-            <hr className="loginSeparator" />
-          </div>
-          <div className="loginNoAccountTextContainer">
-            <h2 className="loginNoAccountText">
-              {isSignUp
-                ? "Already have an account?"
-                : "Don't have an account yet?"}
-            </h2>
-          </div>
-          <div className="signUpToggleButtonContainer">
-            <button
-              className="signUpToggleButton"
-              type="button"
-              onClick={toggleSignUp}
-            >
-              {isSignUp ? "Log in" : "Sign up!"}
-            </button>
-          </div>
-        </div>
+    <div className="loginPageContainer">
+      <h1 className="loginHeaderText">
+        {isSignUp ? "Create account" : "Log in to your account"}
+      </h1>
+      <div className="loginInputFieldsContainer">
+        <input
+          type="text"
+          placeholder="Username"
+          onChange={handleUsernameChange}
+          className={
+            isError
+              ? "errorInputFields usernameInputField"
+              : "inputFields usernameInputField"
+          }
+        />
+        <input
+          type="text"
+          placeholder="Password"
+          onChange={handlePasswordChange}
+          className={
+            isError
+              ? "errorInputFields passwordInputField"
+              : "inputFields passwordInputField"
+          }
+        />
       </div>
-    </>
+      <div
+        id="submitErrorMessages"
+        className="submitMsgs submitErrorMessagesContainer"
+      ></div>
+      <div className="submitMsgs submitSuccessMessagesContainer">
+        <h3 id="submitSuccessMessage"></h3>
+      </div>
+      <button
+        type="button"
+        className={
+          isSignUp ? "submitButton signupButton" : "submitButton loginButton"
+        }
+        onClick={handleSubmit}
+      >
+        {isSignUp ? "Create account" : "Log in"}
+      </button>
+      <hr className="loginSeparator" />
+      <h2 className="loginNoAccountText">
+        {isSignUp ? "Already have an account?" : "Don't have an account yet?"}
+      </h2>
+      <button
+        className="signUpToggleButton"
+        type="button"
+        onClick={toggleSignUp}
+      >
+        {isSignUp ? "Log in" : "Sign up!"}
+      </button>
+    </div>
   );
 }
 
