@@ -10,13 +10,14 @@ import YourReviews from "./pages/YourReviews";
 import AtTheaters from "./pages/AtTheaters";
 import NoPage from "./pages/NoPage";
 import DetailPageWrapper from './pages/DetailPageWrapper';
-import Burgermenu from "./components/Burgermenu";
+import Sidebar from "./components/Sidebar";
+
 
 
 export default function App() {
   return (
     <BrowserRouter>
-      <Burgermenu />
+      <Sidebar />
       <Routes>
         <Route path="/" exact element={<Home />} />
         <Route path="movies" element={<Movies />} />
