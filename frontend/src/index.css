@@ -478,6 +478,19 @@ header {
 
 /* MOVIES PAGE */
   /* in movies.css */
+/* AT THEATERS PAGE */
+.atTheatersContainer {
+  width: 100%;
+  height: 100vh;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  background-image: url("/gradient-bg6.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+}
 /* NO PAGE */
 .noPageContainer {
   width: 100%;
