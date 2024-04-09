@@ -17,7 +17,7 @@ import Sidebar from "./components/Sidebar";
 export default function App() {
   return (
     <BrowserRouter>
-      <Sidebar />
+      
       <Routes>
         <Route path="/" exact element={<Home />} />
         <Route path="movies" element={<Movies />} />
@@ -29,6 +29,7 @@ export default function App() {
         <Route path="login" element={<Login />} />
         <Route path="*" element={<NoPage />} />
       </Routes>
+      <Sidebar />
     </BrowserRouter>
   );
 }

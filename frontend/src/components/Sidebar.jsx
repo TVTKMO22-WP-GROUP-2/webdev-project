@@ -1,18 +1,21 @@
-// Sidebar.jsx
-
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
 const Sidebar = ({ toggleSidebar }) => {
+  useEffect(() => {
+    const btn = document.getElementById('btn');
+    const sidebar = document.querySelector('.sidebar');
 
-    let btn = document.querySelector("#btn");
-    let sidebar = document.querySelector(".sidebar");
-
-    btn.onclick = function () {
-      sidebar.classList.toggle("active");
+    const toggleSidebarVisibility = () => {
+      sidebar.classList.toggle('active');
     };
 
+    btn.addEventListener('click', toggleSidebarVisibility);
 
+    return () => {
+      btn.removeEventListener('click', toggleSidebarVisibility);
+    };
+  }, []); // Empty dependency array ensures this effect runs only once when component mounts
 
   return (
     <div className="sidebar">
@@ -37,13 +40,6 @@ const Sidebar = ({ toggleSidebar }) => {
             <span className="nav-item">Movies</span>
           </Link>
           <span className="tooltip">Movies</span>
-        </li>
-        <li>
-          <Link to="/at-theaters">
-            <i className="bx bx-location-plus"></i>
-            <span className="nav-item">Theaters</span>
-          </Link>
-          <span className="tooltip">Theaters</span>
         </li>
         <li>
           <Link to="/groups">
