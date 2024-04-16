@@ -4,20 +4,25 @@ import axios from "axios";
 import { parseString } from "react-native-xml2js";
 
 function AtTheaters() {
-  const [atThreaters, setAtTheaters] = useState([]);
+  const [atTheaters, setAtTheaters] = useState([]);
   const [city, setCity] = useState("");
 
+
+  // handles dropdown menu value changes
   const handleSelectChange = (e) => {
     setCity(e.target.value);
   };
 
+  // handles button click
   function handleButton() {
     if (city != ""){
-      getXml(city);
+      getSchedule(city);
     }
   };
 
-  async function getXml(city){
+  // gets XML from finnkino and turns it into JSON
+  // gets show start time, auditorium number and movie title from JSON and displays them on the list
+  async function getSchedule(city){
     try {
         const result = await axios.get('https://www.finnkino.fi/xml/Schedule/?area=' + city);
 
@@ -25,7 +30,7 @@ function AtTheaters() {
           if (err === null) {
             const res = parsedJson.Schedule.Shows[0].Show;
             const list = res.map((Show) => (
-              <li key={Show.ID}> {JSON.stringify(Show.dttmShowStart).slice(13,-2)}, {Show.TheatreAndAuditorium}, {Show.OriginalTitle}</li>
+              <li key={Show.ID}> {JSON.stringify(Show.dttmShowStart).slice(13,-2)}, {Show.TheatreAuditorium}, {Show.OriginalTitle}</li>
             ));
             setAtTheaters(list);
           } else {
@@ -65,7 +70,7 @@ function AtTheaters() {
       </div>
       <div className="atTheatersResults">
         <ul>
-          {atThreaters}
+          {atTheaters}
         </ul>
       </div>
     </div>
