@@ -10,9 +10,12 @@ function DetailPage({ movie_id }) {
   const [error, setError] = useState(null);
   const [reviewContent, setReviewContent] = useState("");
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [username, setUsername] = useState();
 
   const apiKey = api_key; // TMDB API key
 
+
+  // Effect hook to fetch movie details when the movie_id or apiKey changes
   useEffect(() => {
     const fetchMovieDetails = async () => {
       try {
@@ -28,7 +31,7 @@ function DetailPage({ movie_id }) {
     };
 
     fetchMovieDetails();
-
+ // Cleanup function to reset state when unmounting
     return () => {
       setMovieDetails(null);
       setIsLoading(true);
@@ -36,11 +39,15 @@ function DetailPage({ movie_id }) {
     };
   }, [movie_id, apiKey]);
 
+  
+// Effect hook to fetch reviews when the movie_id changes
   useEffect(() => {
     const fetchReviews = async () => {
       try {
-        const response = await axios.get(`http://localhost:3000/reviews/${movie_id}`);
-        console.log("Response data:", response.data);
+        const response = await axios.get(
+          `http://localhost:3000/reviews/${movie_id}`
+        );
+       // console.log("Response data:", response.data);
         setReviews(response.data);
       } catch (error) {
         console.error("Error fetching reviews:", error);
@@ -52,43 +59,63 @@ function DetailPage({ movie_id }) {
     fetchReviews();
   }, [movie_id]);
 
-  console.log(reviews);
+  //console.log(reviews);
 
+
+  // Effect hook to fetch username when the component mounts
   useEffect(() => {
-    const checkLoginStatus = async () => {
+    const fetchUsername = async () => {
       try {
-        const response = await axios.get("/users/status");
-        setIsLoggedIn(response.data);
-      } catch (error) {
-        console.error("Error fetching login status:", error);
+        const response = await axios.get("http://localhost:3000/users/username", {
+          withCredentials: true
+        });
+        if (response.data.username) {
+          setIsLoggedIn(true);
+          setUsername(response.data.username);
+        } else {
+          setIsLoggedIn(false);
+        }
+      } catch (err) {
+        console.log(err);
       }
     };
-
-    checkLoginStatus();
+  
+    fetchUsername();
   }, []);
+  
 
+    // Handler function to submit a review
   const handleReviewSubmit = async () => {
     try {
       console.log("Submitting review...");
-
+  
+      if (!username) {
+        console.error("Username not available"); // Check if username is available
+        return;
+      }
+  
       // Send review to backend to save
       const submitResponse = await axios.post("http://localhost:3000/reviews", {
         movie_id: movie_id,
         content_text: reviewContent,
-        userID: userID
+        userID: username,
       });
       console.log("Review submitted successfully:", submitResponse.data);
-
+  
       // Refetch reviews after submission
-      const response = await axios.get(`/http://localhost:3000/reviews/${movie_id}`);
-      setReviews(response.data);
+      const updatedResponse = await axios.get(
+        `http://localhost:3000/reviews/${movie_id}`
+      );
+      // Update reviews state with the fetched reviews
+      setReviews(updatedResponse.data);
       setReviewContent(""); // Clear review input field
-
-      console.log("Reviews updated after submission:", response.data);
+  
+      console.log("Reviews updated after submission:", updatedResponse.data);
     } catch (error) {
       console.error("Error submitting review:", error);
     }
   };
+  
 
   return (
     <div className="detailPageContainer">
@@ -107,7 +134,9 @@ function DetailPage({ movie_id }) {
             <div className="detailHeader">
               <h2>Overview</h2>
               <p>
-                {movieDetails ? movieDetails.overview : "Overview not available"}
+                {movieDetails
+                  ? movieDetails.overview
+                  : "Overview not available"}
               </p>
             </div>
             <div className="detailHeader">
@@ -131,12 +160,19 @@ function DetailPage({ movie_id }) {
       </div>
       <div className="reviewsContainer">
         <h2>Reviews</h2>
-        {reviews.length > 0 ? (
+        {reviews && reviews.length > 0 ? (
           reviews.map((review, index) => (
             <div key={index} className="reviewBox">
-              <p className="username"><strong>Username:</strong> {review.userID}</p>
-              <p className="date"><strong>Date:</strong> {new Date(review.createdAt).toLocaleString()}</p>
-              <p className="content"><strong>Review:</strong> {review.content_text}</p>
+              <p className="username">
+                <strong>Username:</strong> {review.userID}
+              </p>
+              <p className="date">
+                <strong>Date:</strong>{" "}
+                {new Date(review.createdAt).toLocaleString()}
+              </p>
+              <p className="content">
+                <strong>Review:</strong> {review.content_text}
+              </p>
             </div>
           ))
         ) : (
@@ -158,7 +194,6 @@ function DetailPage({ movie_id }) {
       )}
     </div>
   );
-  
   
 }
 
