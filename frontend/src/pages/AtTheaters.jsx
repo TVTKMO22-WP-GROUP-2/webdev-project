@@ -2,15 +2,24 @@ import "../index.css";
 import React, { useState } from "react";
 import axios from "axios";
 import { parseString } from "react-native-xml2js";
+import ScheduleItem from "../components/ScheduleItem";
 
 function AtTheaters() {
   const [atTheaters, setAtTheaters] = useState([]);
   const [city, setCity] = useState("");
-
+  const [date, setDate] = useState("");
 
   // handles dropdown menu value changes
   const handleSelectChange = (e) => {
     setCity(e.target.value);
+  };
+
+  // handles date selection changes
+  // changes date from yyyy-mm-dd to dd.mm.yyyy
+  const handleDateChange = (e) => {
+    const dateTemp = e.target.value;
+    const dateChanged = dateTemp.slice(8) + "." + dateTemp.slice(5,-3) + "." + dateTemp.slice(0,-6);
+    setDate(dateChanged);
   };
 
   // handles button click
@@ -21,16 +30,16 @@ function AtTheaters() {
   };
 
   // gets XML from finnkino and turns it into JSON
-  // gets show start time, auditorium number and movie title from JSON and displays them on the list
+  // gets poster, show start time, auditorium number and movie title from JSON and displays them on the list
   async function getSchedule(city){
     try {
-        const result = await axios.get('https://www.finnkino.fi/xml/Schedule/?area=' + city);
+        const result = await axios.get('https://www.finnkino.fi/xml/Schedule/?area=' + city + "&dt=" + date);
 
         parseString(result.data, (err, parsedJson) => {
           if (err === null) {
             const res = parsedJson.Schedule.Shows[0].Show;
             const list = res.map((Show) => (
-              <li key={Show.ID}> {JSON.stringify(Show.dttmShowStart).slice(13,-2)}, {Show.TheatreAuditorium}, {Show.OriginalTitle}</li>
+              <ScheduleItem key={Show.ID} time={JSON.stringify(Show.dttmShowStart).slice(13,-5)} auditorium={Show.TheatreAuditorium} title={Show.OriginalTitle} imgSRC={Show.Images[0].EventLargeImagePortrait}></ScheduleItem>
             ));
             setAtTheaters(list);
           } else {
@@ -66,12 +75,11 @@ function AtTheaters() {
           <option value="1022" className="other">Turku: KINOPALATSI</option>
           <option value="1046" className="other">Raisio: LUXE MYLLY</option>
         </select>
+        <input type="date" onChange={handleDateChange} />
         <button type="button" onClick={handleButton}>Search</button>
       </div>
       <div className="atTheatersResults">
-        <ul>
           {atTheaters}
-        </ul>
       </div>
     </div>
   );

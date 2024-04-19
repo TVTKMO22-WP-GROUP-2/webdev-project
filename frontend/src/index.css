@@ -481,25 +481,43 @@ header {
 /* AT THEATERS PAGE */
 .atTheatersContainer {
   display: flex;
-  height: 93vh;
-  padding-top: 4em;
+  height: 100vh;
+  
   padding-left: 4em;
   background-image: url("/gradient-bg6.png");
   background-size: cover;
   background-repeat: no-repeat;
 
   flex-direction: column;
+  align-items: center;
+}
+.selectBar {
+  padding-top: 4em;
 }
 .selectBar select {
-  color: black;
-  width: 10%;
+  height: 3em;
+  background-color: hsl(0, 0%, 5%);
+  border: 2px solid hsl(0, 0%, 35%);
+  color: white;
+  border-radius: 20px;
+  margin: 5px;
 }
 .selectBar .other {
-  color: black;
+  color: white;
+}
+.selectBar input { 
+  height: 0.7em;
+  padding: 1em;
+  background-color: hsl(0, 0%, 5%);
+  border: 2px solid hsl(0, 0%, 35%);
+  color: white;
+  color-scheme: dark;
+  border-radius: 20px;
+  margin: 5px;
 }
 .selectBar button {
-  width: 5%;
-  height: 2em;
+  width: 5em;
+  height: 2.8em;
   transition: 0.5s;
   background-size: 200% auto;
   color: white;
@@ -525,9 +543,41 @@ header {
   text-decoration: none;
 }
 .atTheatersResults {
+  width: 80%;
   overflow: auto;
   margin-top: 4em;
-  margin-bottom: 4em;
+  overflow-x: hidden;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.atTheatersResults::-webkit-scrollbar {
+  display: none;
+}
+.atTheatersResults .scheduleItemContainer {
+  height: 25em;
+  width: 90%;
+  background-color: hsla(0, 0%, 50%, 0.089);
+  border: none;
+  border-radius: 30px;
+  box-shadow: 10px 10px 20px hsl(0, 0%, 0%);
+
+  margin-bottom: 1em;
+
+  display: flex;
+  align-items: center;
+}
+.atTheatersResults img {
+  margin: 2em;
+  height: 20em;
+  overflow: hidden;
+}
+.atTheatersResults .timeAndLocation {
+  margin: 1em;
+  overflow: hidden;
+}
+.atTheatersResults .title {
+  margin: 2em;
+  overflow: hidden;
 }
 /* NO PAGE */
 .noPageContainer {
