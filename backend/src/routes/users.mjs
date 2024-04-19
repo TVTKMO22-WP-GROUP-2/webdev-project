@@ -45,9 +45,12 @@ router.post(
   returnValidationErrors,
   passport.authenticate("local"),
   (req, res) => {
-    return res.status(200).send({ msg: "Login success!" });
+    // If authentication is successful, send the username along with success message
+    return res.status(200).send({ username: req.user.username, msg: "Login success!" });
   }
 );
+
+
 
 router.get("/users/status", (req, res) => {
   if (req.user) {
@@ -56,5 +59,16 @@ router.get("/users/status", (req, res) => {
     return res.status(200).send(false);
   }
 });
+
+router.get("/users/username", (req, res) => {
+  if (req.user) {
+    return res.status(200).send({ username: req.user.username });
+  } else {
+    return res.status(200).send({});
+  }
+});
+
+
+
 
 export default router;
