@@ -1,6 +1,6 @@
 import "../movies.css";
 import Card from "../components/Card";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import api_key from "../../secret/Api";
@@ -10,12 +10,35 @@ function Movies() {
   const [searchInput, setSearchInput] = useState("");
   const [cardList, setCardList] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
-  const [selectedGenre, setSelectedGenre] = useState("");
+  const [selectedFilter, setSelectedFilter] = useState("none");
   const [selectedYear, setSelectedYear] = useState("");
-  const [selectedRating, setSelectedRating] = useState("");
+  const [selectedGenre, setSelectedGenre] = useState("");
+  const [genres, setGenres] = useState([]);
+  const [years, setYears] = useState([]);
 
   // TMDB API key
   const apiKey = api_key;
+
+  // Fetch genre list from TMDB API
+  useEffect(() => {
+    const fetchGenres = async () => {
+      try {
+        const response = await axios.get(
+          `https://api.themoviedb.org/3/genre/movie/list?api_key=${apiKey}`
+        );
+        setGenres(response.data.genres);
+      } catch (error) {
+        console.error("Error fetching genres:", error);
+      }
+    };
+
+    fetchGenres();
+
+    // Generate an array of years, going back 100 years from the current year
+    const currentYear = new Date().getFullYear();
+    const yearOptions = Array.from({ length: 100 }, (_, index) => currentYear - index);
+    setYears(yearOptions);
+  }, [apiKey]);
 
   // Handler for search input change
   const handleSearchInputChange = (e) => {
@@ -23,34 +46,24 @@ function Movies() {
   };
 
   // Handler for form submission
-  // Handler for form submission
   const handleSubmit = async () => {
     setIsLoading(true);
     try {
-      // Construct the base URL for the TMDB API
-      let apiUrl = `https://api.themoviedb.org/3/search/movie?api_key=${apiKey}&query=${searchInput}`;
-
-      // Add genre filter if selected
-      if (selectedGenre) {
-        apiUrl += `&with_genres=${selectedGenre}`;
-      }
-
-      // Add release year filter if selected
-      if (selectedYear) {
-        apiUrl += `&year=${selectedYear}`;
-      }
-
-      // Add rating filter if selected
-      if (selectedRating) {
-        apiUrl += `&vote_average.gte=${selectedRating}`;
+      // Construct the API query URL based on selected filter
+      let url = "";
+      if (selectedFilter === "none") {
+        url = `https://api.themoviedb.org/3/search/movie?api_key=${apiKey}&query=${searchInput}`;
+      } else if (selectedFilter === "year") {
+        url = `https://api.themoviedb.org/3/search/movie?api_key=${apiKey}&year=${selectedYear}&query=${searchInput}`;
+      } else if (selectedFilter === "genre") {
+        url = `https://api.themoviedb.org/3/discover/movie?api_key=${apiKey}&with_genres=${selectedGenre}&query=${searchInput}`;
       }
 
       // Fetch movie data from TMDB API
-      const response = await axios.get(apiUrl);
+      const response = await axios.get(url);
 
       // Extract results from response
       const results = response.data.results;
-      console.log();
 
       // Map results to Card components wrapped in Links
       const cards = results.map((movie) => (
@@ -73,48 +86,20 @@ function Movies() {
     }
   };
 
-  const genres = [
-    { id: 28, name: "Action" },
-    { id: 12, name: "Adventure" },
-    { id: 16, name: "Animation" },
-    { id: 35, name: "Comedy" },
-    { id: 80, name: "Crime" },
-    { id: 99, name: "Documentary" },
-    { id: 18, name: "Drama" },
-    { id: 10751, name: "Family" },
-    { id: 14, name: "Fantasy" },
-    { id: 36, name: "History" },
-    { id: 27, name: "Horror" },
-    { id: 10402, name: "Music" },
-    { id: 9648, name: "Mystery" },
-    { id: 10749, name: "Romance" },
-    { id: 878, name: "Science Fiction" },
-    { id: 10770, name: "TV Movie" },
-    { id: 53, name: "Thriller" },
-    { id: 10752, name: "War" },
-    { id: 37, name: "Western" },
-  ];
+  // Event handler for filter selection change
+  const handleFilterChange = (e) => {
+    setSelectedFilter(e.target.value);
+    setSelectedGenre("");
+  };
 
-  const years = Array.from({ length: 30 }, (_, index) => 2022 - index);
-
-  const ratings = [10, 9, 8, 7, 6, 5, 4, 3, 2, 1]; // Assuming ratings are from 1 to 10
+  // Event handler for year selection change
+  const handleYearChange = (e) => {
+    setSelectedYear(e.target.value);
+  };
 
   // Event handler for genre selection change
   const handleGenreChange = (e) => {
-    setSelectedGenre(parseInt(e.target.value));
-    console.log(selectedGenre);
-  };
-
-  // Event handler for release year selection change
-  const handleYearChange = (e) => {
-    setSelectedYear(e.target.value);
-    console.log(selectedYear);
-  };
-
-  // Event handler for rating selection change
-  const handleRatingChange = (e) => {
-    setSelectedRating(parseInt(e.target.value));
-    console.log(selectedRating);
+    setSelectedGenre(e.target.value);
   };
 
   return (
@@ -129,18 +114,23 @@ function Movies() {
         <button type="button" onClick={handleSubmit}>
           Search
         </button>
-        {/* Dropdown menus for filters */}
-        <div className="filters">
-          <select value={selectedGenre || ""} onChange={handleGenreChange}>
-            <option value="">All Genres</option>
-            {genres.map((genre) => (
-              <option key={genre.id} value={genre.id}>
-                {genre.name}
-              </option>
-            ))}
+        {/* Filter dropdown menu with title */}
+        <div className="filterContainer">
+          <label htmlFor="filterDropdown">Filter By:</label>
+          <select
+            id="filterDropdown"
+            className={selectedFilter === "year" ? "yearDropdown" : selectedFilter === "genre" ? "genreDropdown" : ""}
+            value={selectedFilter}
+            onChange={handleFilterChange}
+          >
+            <option value="none">None</option>
+            <option value="year">Year</option>
+            <option value="genre">Genre</option>
           </select>
-
-          <select value={selectedYear || ""} onChange={handleYearChange}>
+        </div>
+        {/* Additional input/select for year or genre filter */}
+        {selectedFilter === "year" && (
+          <select value={selectedYear} onChange={handleYearChange} className="yearDropdown">
             <option value="">All Years</option>
             {years.map((year) => (
               <option key={year} value={year}>
@@ -148,30 +138,27 @@ function Movies() {
               </option>
             ))}
           </select>
-
-          <select value={selectedRating || ""} onChange={handleRatingChange}>
-            <option value="">All Ratings</option>
-            {ratings.map((rating) => (
-              <option key={rating} value={rating}>
-                {rating}
+        )}
+        {selectedFilter === "genre" && (
+          <select value={selectedGenre} onChange={handleGenreChange} className="genreDropdown">
+            <option value="">All Genres</option>
+            {genres.map((genre) => (
+              <option key={genre.id} value={genre.id}>
+                {genre.name}
               </option>
             ))}
           </select>
-        </div>
+        )}
       </div>
       {isLoading ? (
         <p>Loading...</p>
       ) : (
-        <div className="searchResults">
-          {cardList.length === 0 ? (
-            <p>No search query provided. Applying filters to all movies.</p>
-          ) : (
-            cardList
-          )}
-        </div>
+        <div className="searchResults">{cardList}</div>
       )}
     </div>
   );
+  
+  
 }
 
 export default Movies;
