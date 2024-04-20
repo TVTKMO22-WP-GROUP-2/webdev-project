@@ -1,7 +1,6 @@
 import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import "./index.css";
-import Header from "./components/Header";
 import Movies from "./pages/Movies";
 import Groups from "./pages/Groups";
 import Account from "./pages/Account";
@@ -11,12 +10,14 @@ import YourReviews from "./pages/YourReviews";
 import AtTheaters from "./pages/AtTheaters";
 import NoPage from "./pages/NoPage";
 import DetailPageWrapper from './pages/DetailPageWrapper';
+import Sidebar from "./components/Sidebar";
+
 
 
 export default function App() {
   return (
     <BrowserRouter>
-      <Header />
+      
       <Routes>
         <Route path="/" exact element={<Home />} />
         <Route path="movies" element={<Movies />} />
@@ -28,6 +29,7 @@ export default function App() {
         <Route path="login" element={<Login />} />
         <Route path="*" element={<NoPage />} />
       </Routes>
+      <Sidebar />
     </BrowserRouter>
   );
 }

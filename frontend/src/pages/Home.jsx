@@ -1,10 +1,11 @@
 import React from 'react';
 import '../index.css';
+import Header from '../components/Header.jsx'
 
 function Home() {
   return (
     <div className="homePageContainer">
-      <h1>hey</h1>
+      <Header />
     </div>
   );
 }
