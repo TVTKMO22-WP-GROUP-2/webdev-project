@@ -146,13 +146,52 @@
   color: white;
 }
 
-/* DETAIL PAGE */
+
+/* Detail Page */
+.reviewForm {
+  margin-top: 2em;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.reviewForm textarea {
+  height: 60px;
+  margin-bottom: 1em;
+  padding: 0.5em;
+  border: 2px solid #00d4478f;
+  border-radius: 10px;
+  resize: none;
+  color: black;
+}
+
+.reviewForm button {
+  width: 150px;
+  padding: 0.5em;
+  background-color: #4b0082;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.reviewForm button:hover {
+  background-color: #8a2be2;
+}
+
+.reviewForm button:active {
+  background-color: #ff69b4;
+}
+
+.loginMessage {
+  margin-top: 1em;
+  font-style: italic;
+  color: #ccc;
+}
+
 .detailPageContainer {
   background: linear-gradient(to right, #4b0082, #8a2be2, #ff69b4);
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-  height: 100vh;
   display: flex;
   flex-direction: column;
   justify-content: top;

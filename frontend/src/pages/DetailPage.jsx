@@ -93,6 +93,11 @@ function DetailPage({ movie_id }) {
         console.error("Username not available"); // Check if username is available
         return;
       }
+
+      if (!reviewContent.trim()) {
+        console.error("Review content is empty"); // content cant be empty
+        return;
+      }
   
       // Send review to backend to save
       const submitResponse = await axios.post("http://localhost:3000/reviews", {
