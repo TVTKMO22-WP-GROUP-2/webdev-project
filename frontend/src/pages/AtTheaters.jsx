@@ -56,7 +56,7 @@ function AtTheaters() {
     <div className="atTheatersContainer">
       <div className="selectBar">
         <select name="city" id="city" onChange={handleSelectChange}>
-          <option value="" className="other">Select a city</option>
+          <option value="" className="other">Select a theater</option>
           <option value="1039" className="other">Espoo: OMENA</option>
           <option value="1038" className="other">Espoo: SELLO</option>
           <option value="1045" className="other">Helsinki: ITIS</option>

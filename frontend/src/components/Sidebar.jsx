@@ -42,6 +42,13 @@ const Sidebar = ({ toggleSidebar }) => {
           <span className="tooltip">Movies</span>
         </li>
         <li>
+          <Link to="/at-theaters">
+            <i className="bx bx-film"></i>
+            <span className="nav-item">Theaters</span>
+          </Link>
+          <span className="tooltip">Theaters</span>
+        </li>
+        <li>
           <Link to="/groups">
             <i className="bx bx-group"></i>
             <span className="nav-item">Groups</span>
