@@ -1,0 +1,168 @@
+/* groups.css */
+
+/* Container for the groups page */
+.groups-container {
+    margin: 20px;
+    padding-left: 50vh;
+  }
+  
+  /* Form styling */
+  .groups-form {
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    padding: 20px;
+  }
+  
+  /* Form field labels */
+  .groups-label {
+    color: white;
+    margin-bottom: 5px;
+    display: block;
+  }
+  
+  /* Form input fields */
+  .groups-input,
+  .groups-textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    border-radius: 5px;
+    background-color: rgba(255, 255, 255, 0.1);
+    color: white;
+  }
+  
+  /* Button styling */
+  .groups-button {
+    padding: 10px 20px;
+    background-color: rgba(0, 123, 255, 1);
+    border: none;
+    border-radius: 5px;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .groups-button:hover {
+    background-color: rgba(0, 123, 255, 0.8);
+  }
+  
+  .group-card-container {
+    cursor: pointer;
+    margin-bottom: 20px;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .group-card {
+    background-color: #79ff3b57; /* Light gray background */
+    padding: 20px;
+    border-radius: 10px;
+  }
+  
+  .group-name {
+    font-size: 2rem;
+    margin-bottom: 10px;
+    color: #ffffff; 
+  }
+  
+  .group-description {
+    font-size: 1.1rem;
+    margin-bottom: 10px;
+    color: #c5c1c1; 
+  }
+  
+  .group-owner {
+    font-size: 0.9rem;
+    color: #ff0000; 
+  }
+  
+  .group-link {
+    text-decoration: none; /* Remove underline */
+    color: inherit; /* Inherit color from parent */
+  }
+
+  /* GroupPage styles */
+.group-page-container {
+    background-color: #1f1f1f;
+    color: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    padding-left: 60vh;
+  }
+  
+  .group-page-title {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  .group-details {
+    padding-left: 30vh;
+    margin-bottom: 20px;
+  }
+  
+  .group-name {
+    font-size: 24px;
+    margin-bottom: 10px;
+  }
+  
+  .group-description {
+    margin-bottom: 10px;
+  }
+  
+  .group-members-title {
+    font-size: 18px;
+    margin-bottom: 10px;
+  }
+  
+  .group-members-list {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .group-member {
+    margin-bottom: 5px;
+  }
+  
+
+  .owner-controls {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .owner-controls h3 {
+    margin-bottom: 10px;
+  }
+  
+  .owner-controls input[type='color'] {
+    margin-bottom: 10px;
+  }
+  
+  .owner-controls button {
+    margin-right: 10px;
+  }
+  
+
+  .redirect-message {
+    padding-left: 50vh;
+    margin-top: 20px;
+    font-size: 16px;
+    color: #333;
+  }
+  
+  .redirect-link {
+    text-decoration: double;
+    color: #ff0000; /* You can change the color to your preference */
+  }
+  
+  .redirect-link:hover {
+    text-decoration: underline;
+  }
+  
