@@ -11,13 +11,13 @@ import AtTheaters from "./pages/AtTheaters";
 import NoPage from "./pages/NoPage";
 import DetailPageWrapper from './pages/DetailPageWrapper';
 import Sidebar from "./components/Sidebar";
-
+import GroupPage from "./pages/GroupPage";
 
 
 export default function App() {
   return (
     <BrowserRouter>
-      
+
       <Routes>
         <Route path="/" exact element={<Home />} />
         <Route path="movies" element={<Movies />} />
@@ -25,6 +25,7 @@ export default function App() {
         <Route path="at-theaters" element={<AtTheaters />} />
         <Route path="your-reviews" element={<YourReviews />} />
         <Route path="groups" element={<Groups />} />
+        <Route path="/group/:id" element={<GroupPage />} />
         <Route path="account" element={<Account />} />
         <Route path="login" element={<Login />} />
         <Route path="*" element={<NoPage />} />
