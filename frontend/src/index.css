@@ -267,18 +267,6 @@ header {
   height: auto;
 }
 
-/* MOVIES PAGE */
-
-.moviesPageContainer {
-  display: flex;
-  height: 93vh;
-  padding-top: 4em;
-  padding-left: 4em;
-
-  background-image: url("/gradient-bg6.png");
-  background-size: cover;
-  background-repeat: no-repeat;
-}
 .searchBar {
   position: fixed;
   right: 3em;
