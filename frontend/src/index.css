@@ -1,5 +1,3 @@
-
-
 /*               -----COMPONENTS-----               */
 
 /* HEADER */
@@ -471,12 +469,12 @@ header {
 }
 
 /* MOVIES PAGE */
-  /* in movies.css */
+/* in movies.css */
 /* AT THEATERS PAGE */
 .atTheatersContainer {
   display: flex;
   height: 100vh;
-  
+
   padding-left: 4em;
   background-image: url("/gradient-bg6.png");
   background-size: cover;
@@ -499,7 +497,7 @@ header {
 .selectBar .other {
   color: white;
 }
-.selectBar input { 
+.selectBar input {
   height: 0.7em;
   padding: 1em;
   background-color: hsl(0, 0%, 5%);
@@ -724,10 +722,67 @@ header {
   transition: all 0.5s ease;
   width: calc(100% - 80px);
   padding: 1rem;
-  background-image: url("../public/gradient-bg2.png")
+  background-image: url("/gradient-bg2.png");
 }
 
 .container {
   display: flex;
   justify-content: space-between;
+}
+
+/* ACCOUNT PAGE */
+.accountPage {
+  background-image: url("/gradient-bg9.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.accountPageMainContent {
+  background-color: hsla(0, 0%, 50%, 0.089);
+  margin-top: 5vh;
+  margin-bottom: 5vh;
+  width: 80vw;
+  border-radius: 15px;
+  padding: 50px;
+}
+.accountPageUsername {
+  margin-bottom: 5vh;
+  font-size: 3em;
+}
+.accountPageReviewBox {
+  background-color: hsla(0, 0%, 0%, 0.3);
+  padding: 20px;
+  border-radius: 15px;
+  margin-bottom: 1%;
+}
+.accountPageReviewContent {
+  display: flex;
+}
+@media only screen and (max-width: 750px) {
+  .accountPageReviewContent {
+    flex-direction: column;
+  }
+}
+.accountPageReviewTextContent {
+  margin-left: 2%;
+}
+.accountPageReviewAndDate {
+  background-color: hsla(0, 0%, 100%, 0.2);
+  border-radius: 10px;
+  width: 45vw;
+  display: flex;
+  flex-direction: column;
+}
+.accountPageReview {
+  margin: 3%;
+  font-weight: 200;
+}
+.accountPageReviewDate {
+  align-self: end;
+  justify-self: end;
+  font-weight: 100;
+  margin: 5px;
 }

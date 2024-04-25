@@ -6,7 +6,7 @@ import routes from "./routes/routes.mjs";
 import cookieParser from "cookie-parser";
 import session from "express-session";
 import passport from "passport";
-import { SESSION_SECRET } from "./secrets/secrets.mjs";
+import { SESSION_SECRET } from "./secret/secrets.mjs";
 import "./auth/local-strategy.mjs";
 
 const app = express();
