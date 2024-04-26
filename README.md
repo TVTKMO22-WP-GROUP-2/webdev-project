@@ -1,4 +1,4 @@
-![image](https://github.com/TVTKMO22-WP-GROUP-2/webdev-project/assets/143529308/6544e2a6-9259-460f-83b8-5008a4c4e8e8)GROUP 2:  
+GROUP 2:  
 Niklas Pihlajaniemi — rowancape  
 Tuomas Parpala — Tumbsi  
 Nikolas Mäkikangas — nnasu  
@@ -29,19 +29,17 @@ Miten otetaan käyttöön
 Projekti otetaan käyttöön kloonaamalla tiedostot GitHubista omalle tietokoneelle ja asentamalla tarvittavat riippuvuudet tarkalleen frontend- ja backend kansioiden juureen, joita sovellus tarvitsee toimiakseen. Väärään kansioon asentaminen aiheuttaa konflikteja. 
 Lisäksi projektin käyttöönotto vaatii MongoDB tietokantasovelluksen, johon on säädettävä oikeat yhteydet tietokannan ja sovelluksen välille. MongoDB:hen on luotava “database” niminen tietokanta, johon tulee luoda kokoelmat: “reviews”, “sessions” ja “users” jotta tietokanta ja ohjelma kommunikoivat oikein.
 Ohjelman frontend käynnistetään komennolla “npm run dev” ja backend komennolla “npm run start:dev”. Koodiohjelman terminaali antaa suoran paikallisen nettilinkin sovellukseen.
- 
-Ylemmässä kuvassa on näkymä elokuvasivulle, jossa pystyy suodattamaan elokuvia esimerkiksi genren, tai vuoden perusteella.
 
  ![image](https://github.com/TVTKMO22-WP-GROUP-2/webdev-project/assets/143529308/6544e2a6-9259-460f-83b8-5008a4c4e8e8)
- ![image](https://github.com/TVTKMO22-WP-GROUP-2/webdev-project/assets/143529308/cf5b5f1b-e56f-43e8-b9a9-a70dbe6d545b)
+Ylemmässä kuvassa on näkymä elokuvasivulle, jossa pystyy suodattamaan elokuvia esimerkiksi genren, tai vuoden perusteella.
 
+![image](https://github.com/TVTKMO22-WP-GROUP-2/webdev-project/assets/143529308/2f142149-6b84-43a6-be5e-a48419b9339c)
 Yllä olevassa kuvassa näkyy toiminnallisuutta arvostelujen jättämiselle elokuville, kirjautuneiden käyttäjätunnus, sekä arvostelun päivämäärä.
 
-
-
- 
+![image](https://github.com/TVTKMO22-WP-GROUP-2/webdev-project/assets/143529308/9f1e75db-f0d0-4bfd-be65-28d2ce772cdf)
 Yllä oleva kuva on kuvakaappaus sovelluksen kirjautumissivulta, josta voi sekä luoda käyttäjän, että kirjautua olemassa olevilla tunnuksilla.
- 
+
+![image](https://github.com/TVTKMO22-WP-GROUP-2/webdev-project/assets/143529308/25cee796-c925-457f-b084-fdc2ec131253)
 Ylemmässä kuvassa on kuvakaappaus Reviews -sivulta, josta käyttäjä löytää kaikki jättämänsä arvostelut elokuvista. Sivu näyttää myös arvostelun jättämisen päivämäärän, sekä kellonajan.
 
 
