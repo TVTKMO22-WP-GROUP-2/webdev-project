@@ -546,7 +546,7 @@ header {
   display: none;
 }
 .atTheatersResults .scheduleItemContainer {
-  height: 25em;
+  height: 18em;
   width: 90%;
   background-color: hsla(0, 0%, 50%, 0.089);
   border: none;
@@ -560,16 +560,40 @@ header {
 }
 .atTheatersResults img {
   margin: 2em;
-  height: 20em;
-  overflow: hidden;
+  height: 13em;
 }
 .atTheatersResults .timeAndLocation {
   margin: 1em;
-  overflow: hidden;
+  width: 20%;
 }
 .atTheatersResults .title {
-  margin: 2em;
-  overflow: hidden;
+  margin: 1em;
+}
+@media only screen and (max-width: 600px) {
+  .atTheatersResults .scheduleItemContainer {
+    height: 15em;
+    width: 90%;
+    background-color: hsla(0, 0%, 50%, 0.089);
+    border: none;
+    border-radius: 30px;
+    box-shadow: 10px 10px 20px hsl(0, 0%, 0%);
+  
+    margin-bottom: 1em;
+  
+    display: flex;
+    align-items: center;
+  }
+  .atTheatersResults img {
+    margin: 2em;
+    height: 10em;
+  }
+  .atTheatersResults .timeAndLocation {
+    margin: 0em;
+    width: 40%;
+  }
+  .atTheatersResults .title {
+    
+  }
 }
 /* NO PAGE */
 .noPageContainer {
