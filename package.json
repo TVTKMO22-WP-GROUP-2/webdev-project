@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "react-native-xml2js": "^1.0.3",
+    "swiper": "^11.1.1"
+  }
+}
