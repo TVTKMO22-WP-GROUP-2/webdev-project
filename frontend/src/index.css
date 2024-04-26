@@ -561,15 +561,28 @@ header {
 .atTheatersResults img {
   margin: 2em;
   height: 20em;
-  overflow: hidden;
 }
 .atTheatersResults .timeAndLocation {
   margin: 1em;
-  overflow: hidden;
 }
 .atTheatersResults .title {
-  margin: 2em;
-  overflow: hidden;
+  margin: 1em;
+}
+@media only screen and (max-width: 1200px) {
+  .atTheatersResults .scheduleItemContainer {
+    height: 13em;
+  }
+  .atTheatersResults img {
+    height: 10em;
+    margin: 0;
+    margin-left: 2em;
+  }
+  .atTheatersResults .timeAndLocation {
+    font-size: 0.7em;
+  }
+  .atTheatersResults .title {
+    font-size: 1em;
+  }
 }
 /* NO PAGE */
 .noPageContainer {
