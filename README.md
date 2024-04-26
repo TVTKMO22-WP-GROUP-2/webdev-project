@@ -32,7 +32,7 @@ Ohjelman frontend käynnistetään komennolla “npm run dev” ja backend komen
  
 Ylemmässä kuvassa on näkymä elokuvasivulle, jossa pystyy suodattamaan elokuvia esimerkiksi genren, tai vuoden perusteella.
 
-
+ ![image](https://github.com/TVTKMO22-WP-GROUP-2/webdev-project/assets/143529308/6544e2a6-9259-460f-83b8-5008a4c4e8e8)
  ![image](https://github.com/TVTKMO22-WP-GROUP-2/webdev-project/assets/143529308/cf5b5f1b-e56f-43e8-b9a9-a70dbe6d545b)
 
 Yllä olevassa kuvassa näkyy toiminnallisuutta arvostelujen jättämiselle elokuville, kirjautuneiden käyttäjätunnus, sekä arvostelun päivämäärä.
