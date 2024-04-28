@@ -62,11 +62,34 @@ router.get("/users/status", (req, res) => {
 
 router.get("/users/username", (req, res) => {
   if (req.user) {
-    return res.status(200).send({ username: req.user.username });
+    return res.status(200).send({ username: req.user.username, pictureID: req.user.pictureID  });
   } else {
     return res.status(200).send({});
   }
 });
+
+router.patch("/users/:username", async (req, res) => {
+  const { pictureID } = req.body;
+  const { username } = req.params;
+
+  try {
+    const updatedUser = await User.findOneAndUpdate(
+      { username },
+      { pictureID },
+      { new: true }
+    );
+
+    if (!updatedUser) {
+      return res.status(404).json({ error: "User not found" });
+    }
+
+    res.status(200).json(updatedUser);
+  } catch (error) {
+    console.error("Error updating user profile picture:", error);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+});
+
 
 
 
