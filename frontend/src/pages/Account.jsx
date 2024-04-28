@@ -20,6 +20,7 @@ const pictureImages = {
 };
 
 function Account() {
+  const [loggedIn, setLoggedIn] = useState(false);
   const [username, setUsername] = useState();
   const [reviews, setReviews] = useState([]);
   const [selectedPicture, setSelectedPicture] = useState(null);
@@ -39,6 +40,7 @@ function Account() {
               withCredentials: true,
             }
           );
+          
           const userData = userDataResponse.data;
 
           if (userData.pictureID) {
@@ -54,6 +56,8 @@ function Account() {
               withCredentials: true,
             }
           );
+          if (userData.username) {
+            setLoggedIn(true);}
           setReviews(reviewsResponse.data);
         } catch (error) {
           console.error("Error fetching data:", error);
@@ -94,14 +98,14 @@ function Account() {
             <img src={profilePictureUrl} alt="Selected Profile Picture" />
           </div>
         )}
-  
+        {loggedIn && (
         <div className="profile-picture-selection">
           <h2>Profile Picture</h2>
           <button onClick={() => setShowPictureModal(true)}>
             Change Picture
           </button>
         </div>
-        
+        )}
         <div className="accountPageReviewsContainer">
           <h2>{username}'s reviews</h2>
           {reviews && reviews.length > 0 ? (
