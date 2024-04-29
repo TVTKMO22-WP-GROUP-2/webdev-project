@@ -63,7 +63,6 @@ function Groups() {
     }
   };
 
-
   return (
     <div className="groups-container">
       <h1>GROUPS PAGE</h1>

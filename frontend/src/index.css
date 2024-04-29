@@ -27,7 +27,6 @@ header {
 }
 /* Card */
 
-
 /*               -----PAGES-----               */
 
 /* HOME PAGE */
@@ -249,67 +248,6 @@ header {
   max-width: 200px;
   height: auto;
 }
-
-.searchBar {
-  position: fixed;
-  right: 3em;
-  display: flex;
-  align-items: center;
-  width: 13%;
-}
-.searchBar input {
-  width: 70%;
-  height: 0.5em;
-
-  padding: 1em;
-
-  background-color: hsl(0, 0%, 5%);
-  border: 2px solid hsl(0, 0%, 35%);
-  color: white;
-  border-radius: 20px;
-  margin: 5px;
-}
-.searchBar button {
-  width: 20%;
-  height: 38px;
-
-  transition: 0.5s;
-  background-size: 200% auto;
-  color: white;
-
-  border: 2px solid hsl(0, 0%, 35%);
-  border-radius: 1em;
-
-  background-image: linear-gradient(
-    to right,
-    hsl(323, 100%, 50%) 0%,
-    hsl(301, 92%, 20%) 51%,
-    hsl(323, 100%, 50%) 100%
-  );
-}
-.searchBar button:active {
-  background-image: linear-gradient(
-    to right,
-    hsl(323, 100%, 40%) 0%,
-    hsl(301, 92%, 10%) 51%,
-    hsl(323, 100%, 40%) 100%
-  );
-}
-.searchBar button:hover {
-  background-position: right center;
-  text-decoration: none;
-}
-.searchResults {
-  width: 84%;
-  overflow: auto;
-  -ms-overflow-style: none;
-  scrollbar-width: none;
-}
-.searchResults::-webkit-scrollbar {
-  display: none;
-}
-
-
 
 /* NO PAGE */
 .noPageContainer {
@@ -773,8 +711,7 @@ header {
   margin: 5px;
 }
 
-
-/* profile picture styling */
+/* Profile picture selection section */
 .profile-picture-selection {
   margin-top: 20px;
 }
@@ -785,7 +722,7 @@ header {
 }
 
 .profile-picture-selection button {
-  background-color: #4CAF50;
+  background-color: #4caf50;
   color: white;
   padding: 10px 20px;
   border: none;
@@ -798,6 +735,7 @@ header {
   background-color: #45a049;
 }
 
+/* Picture modal */
 .picture-modal {
   background-color: rgba(0, 0, 0, 0.5);
   position: fixed;
@@ -824,10 +762,32 @@ header {
 }
 
 .picture-modal img:hover {
-  border: 2px solid #4CAF50;
+  border: 2px solid #4caf50;
 }
 
+/* Media queries for responsiveness */
+@media screen and (max-width: 768px) {
+  .picture-grid {
+    grid-template-columns: repeat(
+      2,
+      1fr
+    ); /* Adjust grid columns for medium screens */
+  }
+}
 
+@media screen and (max-width: 480px) {
+  .picture-grid {
+    grid-template-columns: repeat(
+      1,
+      1fr
+    ); /* Adjust grid columns for small screens */
+  }
+
+  .profile-picture-selection button {
+    padding: 8px 16px; /* Adjust button padding for small screens */
+    font-size: 0.9rem; /* Adjust button font size for small screens */
+  }
+}
 
 .movieSwiper {
   position: absolute;
