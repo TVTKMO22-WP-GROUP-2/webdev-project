@@ -90,7 +90,7 @@
     padding: 20px;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-    padding-left: 60vh;
+    padding-left: 30vh;
   }
   
   .group-page-title {
@@ -127,11 +127,11 @@
   }
   
 
-  .owner-controls {
+  .owner-specific-content {
     position: fixed;
     top: 20px;
     right: 20px;
-    background-color: #fff;
+    background-color: #d30000;
     padding: 20px;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);

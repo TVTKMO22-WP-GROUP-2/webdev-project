@@ -56,13 +56,6 @@ const Sidebar = ({ toggleSidebar }) => {
           <span className="tooltip">Groups</span>
         </li>
         <li>
-          <Link to="/reviews">
-            <i className="bx bx-like"></i>
-            <span className="nav-item">Reviews</span>
-          </Link>
-          <span className="tooltip">Reviews</span>
-        </li>
-        <li>
           <Link to="/account">
             <i className="bx bxs-user-account"></i>
             <span className="nav-item">Account</span>

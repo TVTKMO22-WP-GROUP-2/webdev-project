@@ -19,6 +19,7 @@ function Movies() {
   // TMDB API key
   const apiKey = api_key;
 
+
   // Fetch genre list from TMDB API
   useEffect(() => {
     const fetchGenres = async () => {
@@ -36,7 +37,10 @@ function Movies() {
 
     // Generate an array of years, going back 100 years from the current year
     const currentYear = new Date().getFullYear();
-    const yearOptions = Array.from({ length: 100 }, (_, index) => currentYear - index);
+    const yearOptions = Array.from(
+      { length: 100 },
+      (_, index) => currentYear - index
+    );
     setYears(yearOptions);
   }, [apiKey]);
 
@@ -102,6 +106,25 @@ function Movies() {
     setSelectedGenre(e.target.value);
   };
 
+
+  useEffect(() => {
+    const adjustTitleFontSize = () => {
+      const cards = document.querySelectorAll(".searchResults .card");
+
+      cards.forEach((card) => {
+        const title = card.querySelector("h2");
+        const titleLength = title.textContent.length;
+        const fontSize = Math.max(0.7, 2.2 - titleLength * 0.08); // Adjust the multiplier as needed
+
+        title.style.fontSize = `${fontSize}rem`;
+      });
+    };
+
+    adjustTitleFontSize();
+
+    // Re-adjust font size when cardList changes
+  }, [cardList]);
+
   return (
     <div className="moviesPageContainer">
       <div className="searchBar">
@@ -119,7 +142,13 @@ function Movies() {
           <label htmlFor="filterDropdown">Filter By:</label>
           <select
             id="filterDropdown"
-            className={selectedFilter === "year" ? "yearDropdown" : selectedFilter === "genre" ? "genreDropdown" : ""}
+            className={
+              selectedFilter === "year"
+                ? "yearDropdown"
+                : selectedFilter === "genre"
+                ? "genreDropdown"
+                : ""
+            }
             value={selectedFilter}
             onChange={handleFilterChange}
           >
@@ -130,7 +159,11 @@ function Movies() {
         </div>
         {/* Additional input/select for year or genre filter */}
         {selectedFilter === "year" && (
-          <select value={selectedYear} onChange={handleYearChange} className="yearDropdown">
+          <select
+            value={selectedYear}
+            onChange={handleYearChange}
+            className="yearDropdown"
+          >
             <option value="">All Years</option>
             {years.map((year) => (
               <option key={year} value={year}>
@@ -140,7 +173,11 @@ function Movies() {
           </select>
         )}
         {selectedFilter === "genre" && (
-          <select value={selectedGenre} onChange={handleGenreChange} className="genreDropdown">
+          <select
+            value={selectedGenre}
+            onChange={handleGenreChange}
+            className="genreDropdown"
+          >
             <option value="">All Genres</option>
             {genres.map((genre) => (
               <option key={genre.id} value={genre.id}>
@@ -157,8 +194,6 @@ function Movies() {
       )}
     </div>
   );
-  
-  
 }
 
 export default Movies;
