@@ -18,7 +18,7 @@ body {
   padding: 0;
   font-family: "Kanit", Courier, monospace;
   font-weight: 400;
-  color: white;
+  color: rgb(255, 255, 255);
   background: linear-gradient(to right, #4b0082, #8a2be2, #ff69b4);
 }
 
@@ -32,10 +32,11 @@ body {
 
 .card {
   background-color: black;
-  height: 36.5vh;
   width: 10em;
   display: flex;
   flex-direction: column;
+  justify-content: center; /* Center content vertically */
+  align-items: center; /* Center content horizontally */
   padding: 1em;
   background-color: hsla(0, 0%, 100%, 0.089);
   border: none;
@@ -119,7 +120,8 @@ body {
   margin: 0.5em;
   display: inline-block;
   width: 10em;
-  text-align: center;
+  height: 36.5vh; /* Set a fixed height for the card */
+  overflow: hidden; /* Hide overflow content */
 }
 
 .searchResults .card img {
@@ -128,14 +130,13 @@ body {
   height: 90%;
 }
 
-.searchResults .card h2 {
-  width: 100%;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: wrap;
-  height: 50px;
-  font-size: 1.5rem;
+.card h2 {
+  white-space: normal; /* Allow text to wrap */
+  text-overflow: ellipsis; /* Show ellipsis for overflow */
+  font-size: clamp(1rem, calc(1.5rem - 1vw), 1.5rem); /* Adjust font size dynamically */
+  text-align: center; /* Center text horizontally */
 }
+
 
 /* Dropdown menu styles */
 .filterContainer {
